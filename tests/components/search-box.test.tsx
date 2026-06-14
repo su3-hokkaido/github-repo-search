@@ -24,6 +24,33 @@ describe("SearchBox", () => {
     expect(push).not.toHaveBeenCalled();
   });
 
+  it("shows a validation message on a blank submit", () => {
+    renderIntl(<SearchBox />);
+    fireEvent.click(screen.getByRole("button", { name: /search/i }));
+    expect(screen.getByRole("alert")).toHaveTextContent(/enter a keyword/i);
+    expect(push).not.toHaveBeenCalled();
+  });
+
+  it("shows a validation message when the query is only whitespace", () => {
+    renderIntl(<SearchBox />);
+    fireEvent.change(screen.getByRole("textbox", { name: /search repositories/i }), {
+      target: { value: "   " },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /search/i }));
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+    expect(push).not.toHaveBeenCalled();
+  });
+
+  it("clears the validation message once the user types", () => {
+    renderIntl(<SearchBox />);
+    fireEvent.click(screen.getByRole("button", { name: /search/i }));
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+    fireEvent.change(screen.getByRole("textbox", { name: /search repositories/i }), {
+      target: { value: "react" },
+    });
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
   it("pre-fills the input from initialQuery", () => {
     renderIntl(<SearchBox initialQuery="vue" />);
     expect(screen.getByRole("textbox")).toHaveValue("vue");

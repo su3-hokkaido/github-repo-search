@@ -8,6 +8,7 @@
     "inputLabel": "Search repositories",
     "placeholder": "Search repositories",
     "submit": "Search",
+    "validationRequired": "Enter a keyword to search.",
     "idle": "Search GitHub repositories by keyword.",
     "loading": "Searching…",
     "empty": "No repositories match “{query}”. Try a different keyword.",
