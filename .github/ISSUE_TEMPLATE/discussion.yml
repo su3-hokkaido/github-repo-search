@@ -1,0 +1,68 @@
+name: Discussion
+description: Start a discussion about an idea, question, or general topic
+title: "[Discussion] "
+labels: ["discussion", "question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for starting a discussion! This is the place for open-ended questions, brainstorming, and general conversation about the project.
+
+  - type: textarea
+    id: topic
+    attributes:
+      label: Discussion Topic
+      description: What would you like to discuss?
+      placeholder: Briefly describe the topic or question you would like to discuss
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which category does this discussion fall into?
+      options:
+        - General question
+        - Feature brainstorming
+        - Architecture / Design
+        - Best practices
+        - Process / Workflow
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & Background
+      description: Provide any relevant context or background information
+      placeholder: What led to this discussion? Is there any related background?
+
+  - type: textarea
+    id: current-thoughts
+    attributes:
+      label: Current Thoughts / Ideas
+      description: Share your initial thoughts or ideas
+      placeholder: What are your initial thoughts on this topic?
+
+  - type: textarea
+    id: specific-questions
+    attributes:
+      label: Specific Questions
+      description: Are there specific questions you want answered?
+      placeholder: List any specific questions you have about this topic
+
+  - type: checkboxes
+    id: discussion-goals
+    attributes:
+      label: Discussion Goals
+      description: What do you want to achieve with this discussion?
+      options:
+        - label: Get feedback on an idea
+        - label: Gather different perspectives
+        - label: Make a decision
+        - label: Learn more about a topic
+        - label: Share knowledge / experience
+        - label: Identify potential issues or considerations

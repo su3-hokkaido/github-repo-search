@@ -1,0 +1,63 @@
+name: Change Request
+description: Request a change or modification to existing functionality
+title: "[Change] "
+labels: ["change-request", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a change request! Please provide as much detail as possible so we can understand your request.
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: Describe the current behavior you want to change
+      placeholder: How does it currently behave, and what do you want to change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-behavior
+    attributes:
+      label: Desired Behavior
+      description: Describe how you would like it to behave instead
+      placeholder: What behavior are you hoping for?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Explain why this change is needed
+      placeholder: Why is this change important? What problem does it solve?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgent is this change?
+      options:
+        - Urgent
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact-assessment
+    attributes:
+      label: Impact Assessment
+      description: Describe the potential impact of this change
+      placeholder: Who/what is affected by this change? Are there any risks or considerations?
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other information that might be helpful
+      placeholder: Screenshots, examples, related issues, etc.
