@@ -52,6 +52,8 @@ export function RepoDetailView({ owner, repo }: RepoDetailViewProps) {
   useEffect(() => {
     const controller = new AbortController();
     let active = true;
+    // owner/repo の変更時に即座にローディング表示へ戻すため、意図的に同期更新する。
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setState({ status: "loading" });
 
     (async () => {
