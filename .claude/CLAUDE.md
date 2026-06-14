@@ -2,6 +2,11 @@
 
 This document defines the project's rules, objectives, and progress management methods. Please proceed with the project according to the following content.
 
+## First Action
+
+First of all, you have to read the project plan that is located in `.claude/documents/project_plan.md` before
+writing or modifying any code.
+
 ## Top-Level Rules
 
 - To maximize efficiency, **if you need to execute multiple independent processes, invoke those tools concurrently, not sequentially**.
