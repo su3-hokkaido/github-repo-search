@@ -1,0 +1,16 @@
+# Local secrets for the Cloudflare dev runtime (used by `wrangler dev` and the
+# OpenNext preview). Copy this file to `.dev.vars` and fill in real values.
+# `.dev.vars` is gitignored and must never be committed.
+#
+# For plain `next dev`, the same variables can instead be placed in `.env.local`.
+
+# GitHub personal access token. Used ONLY server-side (Route Handlers) to
+# authenticate calls to the GitHub API. A token raises the API rate limit and is
+# never exposed to the browser. A fine-grained token with public read access is
+# sufficient for searching public repositories.
+GITHUB_TOKEN=""
+
+# Optional: only needed if you use Upstash instead of Cloudflare KV for rate
+# limiting.
+# UPSTASH_REDIS_REST_URL=""
+# UPSTASH_REDIS_REST_TOKEN=""

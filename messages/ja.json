@@ -1,0 +1,52 @@
+{
+  "Common": {
+    "appTitle": "GitHub リポジトリ検索",
+    "appDescription": "GitHub のリポジトリを検索し、詳細を表示します。",
+    "loading": "読み込み中…"
+  },
+  "Search": {
+    "inputLabel": "リポジトリを検索",
+    "placeholder": "リポジトリを検索",
+    "submit": "検索",
+    "idle": "キーワードで GitHub リポジトリを検索します。",
+    "loading": "検索中…",
+    "empty": "「{query}」に一致するリポジトリはありません。別のキーワードをお試しください。",
+    "resultsSummary": "{count, number} 件のリポジトリ · {page} / {pageCount} ページ",
+    "errorGeneric": "問題が発生しました。もう一度検索してください。",
+    "errorRateLimited": "リクエストが多すぎます。少し待ってから再度検索してください。"
+  },
+  "RepoList": {
+    "starsLabel": "スター {count, number} 件"
+  },
+  "Pagination": {
+    "label": "ページ送り",
+    "previous": "前のページ",
+    "next": "次のページ",
+    "page": "{page} ページ目"
+  },
+  "RepoDetail": {
+    "back": "検索に戻る",
+    "loading": "読み込み中…",
+    "notFound": "リポジトリが見つかりませんでした。名前が変更されたか、削除された可能性があります。",
+    "errorGeneric": "問題が発生しました。もう一度お試しください。",
+    "errorRateLimited": "リクエストが多すぎます。少し待ってから再度お試しください。",
+    "stars": "スター",
+    "watchers": "ウォッチャー",
+    "watchersTitle": "このリポジトリをウォッチしている購読者数",
+    "forks": "フォーク",
+    "issues": "Issue",
+    "issuesTitle": "オープンな Issue と Pull Request",
+    "openOnGitHub": "GitHub で開く"
+  },
+  "Theme": {
+    "toggle": "テーマを切り替える",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
+  "Locale": {
+    "label": "言語",
+    "en": "English",
+    "ja": "日本語"
+  }
+}
