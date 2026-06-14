@@ -1,101 +1,92 @@
 {
-  // Wrangler configuration for deploying the Next.js 16 (App Router) app to
-  // Cloudflare Workers via the OpenNext adapter (@opennextjs/cloudflare).
-  //
-  // Build & deploy (via the OpenNext adapter — do not call wrangler deploy
-  // directly):
-  //   npx opennextjs-cloudflare build
-  //   npx opennextjs-cloudflare deploy
-  //
-  // Local preview against the Workers runtime:
-  //   npx opennextjs-cloudflare build && npx opennextjs-cloudflare preview
-  //
-  // NOTE: Replace every "<...>" placeholder before deploying. KV namespace IDs
-  // are created with: npx wrangler kv namespace create <NAME>
-
-  "$schema": "node_modules/wrangler/config-schema.json",
-
-  // Worker name shown in the Cloudflare dashboard. Keep it in sync with the
-  // WORKER_SELF_REFERENCE service binding below.
-  "name": "github-repo-search",
-
-  // Entry produced by the OpenNext build. Do not change unless you alter the
-  // build output.
-  "main": ".open-next/worker.js",
-
-  // Must be 2024-09-23 or later for @opennextjs/cloudflare to work. Bumping this
-  // to a more recent date opts into newer runtime behavior; keep it current.
-  "compatibility_date": "2025-03-25",
-
-  // nodejs_compat:                enables the Node.js APIs OpenNext relies on.
-  // global_fetch_strictly_public: ensures outbound fetch() (e.g. to the GitHub
-  //                               API) hits the public internet, not the Worker
-  //                               itself.
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-
-  // Static assets emitted by the build. Binding name must stay "ASSETS".
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-
-  // Self-reference binding required by OpenNext. "service" must equal "name".
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "github-repo-search"
-    }
-  ],
-
-  // ---------------------------------------------------------------------------
-  // Application bindings used by the BFF (Route Handlers under /app/api/*).
-  // ---------------------------------------------------------------------------
-
-  // KV namespaces for application-layer rate limiting and the short-TTL GitHub
-  // response cache. In-memory state is NOT safe on Workers (isolates are not
-  // sticky), so all rate-limit / cache state must live in an external store.
-  //
-  // Create them first, then paste the returned IDs here:
-  //   npx wrangler kv namespace create RATE_LIMIT_KV
-  //   npx wrangler kv namespace create CACHE_KV
-  "kv_namespaces": [
-    {
-      "binding": "RATE_LIMIT_KV",
-      "id": "<RATE_LIMIT_KV_NAMESPACE_ID>"
-    },
-    {
-      "binding": "CACHE_KV",
-      "id": "<CACHE_KV_NAMESPACE_ID>"
-    }
-  ],
-
-  // Cloudflare image optimization binding (used by next/image via OpenNext).
-  "images": {
-    "binding": "IMAGES"
-  },
-
-  // Surface logs/metrics in the dashboard. Helpful for debugging rate-limit and
-  // upstream (GitHub) errors in production.
-  "observability": {
-    "enabled": true
-  }
-
-  // ---------------------------------------------------------------------------
-  // OPTIONAL (uncomment if needed)
-  // ---------------------------------------------------------------------------
-  //
-  // Next.js incremental cache backed by R2 (only needed for large cached
-  // payloads that exceed KV's per-value limit). Configure in open-next.config.ts.
-  // "r2_buckets": [
-  //   { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "<BUCKET_NAME>" }
-  // ],
-  //
-  // SECRETS — never commit these. Set them via the CLI instead:
-  //   npx wrangler secret put GITHUB_TOKEN
-  // GITHUB_TOKEN is read ONLY inside Route Handlers to authenticate calls to the
-  // GitHub API. It must never be exposed to the browser.
-  //
-  // If you choose Upstash instead of Cloudflare KV for rate limiting, set:
-  //   npx wrangler secret put UPSTASH_REDIS_REST_URL
-  //   npx wrangler secret put UPSTASH_REDIS_REST_TOKEN
+	// Wrangler configuration for deploying the Next.js 16 (App Router) app to
+	// Cloudflare Workers via the OpenNext adapter (@opennextjs/cloudflare).
+	//
+	// Build & deploy (via the OpenNext adapter — do not call wrangler deploy
+	// directly):
+	//   npx opennextjs-cloudflare build
+	//   npx opennextjs-cloudflare deploy
+	//
+	// Local preview against the Workers runtime:
+	//   npx opennextjs-cloudflare build && npx opennextjs-cloudflare preview
+	//
+	// NOTE: Replace every "<...>" placeholder before deploying. KV namespace IDs
+	// are created with: npx wrangler kv namespace create <NAME>
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Worker name shown in the Cloudflare dashboard. Keep it in sync with the
+	// WORKER_SELF_REFERENCE service binding below.
+	"name": "github-repo-search",
+	// Entry produced by the OpenNext build. Do not change unless you alter the
+	// build output.
+	"main": ".open-next/worker.js",
+	// Must be 2024-09-23 or later for @opennextjs/cloudflare to work. Bumping this
+	// to a more recent date opts into newer runtime behavior; keep it current.
+	"compatibility_date": "2025-03-25",
+	// nodejs_compat:                enables the Node.js APIs OpenNext relies on.
+	// global_fetch_strictly_public: ensures outbound fetch() (e.g. to the GitHub
+	//                               API) hits the public internet, not the Worker
+	//                               itself.
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	// Static assets emitted by the build. Binding name must stay "ASSETS".
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	// Self-reference binding required by OpenNext. "service" must equal "name".
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "github-repo-search"
+		}
+	],
+	// ---------------------------------------------------------------------------
+	// Application bindings used by the BFF (Route Handlers under /app/api/*).
+	// ---------------------------------------------------------------------------
+	// KV namespaces for application-layer rate limiting and the short-TTL GitHub
+	// response cache. In-memory state is NOT safe on Workers (isolates are not
+	// sticky), so all rate-limit / cache state must live in an external store.
+	//
+	// Create them first, then paste the returned IDs here:
+	//   npx wrangler kv namespace create RATE_LIMIT_KV
+	//   npx wrangler kv namespace create CACHE_KV
+	"kv_namespaces": [
+		{
+			"binding": "RATE_LIMIT_KV",
+			"id": "00542cd9b7d542d78d616920bdee2f10"
+		},
+		{
+			"binding": "CACHE_KV",
+			"id": "150ff4ad3d9f49189bb0a29af6ef48f3"
+		}
+	],
+	// Cloudflare image optimization binding (used by next/image via OpenNext).
+	"images": {
+		"binding": "IMAGES"
+	},
+	// Surface logs/metrics in the dashboard. Helpful for debugging rate-limit and
+	// upstream (GitHub) errors in production.
+	"observability": {
+		"enabled": true
+	}
+	// ---------------------------------------------------------------------------
+	// OPTIONAL (uncomment if needed)
+	// ---------------------------------------------------------------------------
+	//
+	// Next.js incremental cache backed by R2 (only needed for large cached
+	// payloads that exceed KV's per-value limit). Configure in open-next.config.ts.
+	// "r2_buckets": [
+	//   { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "<BUCKET_NAME>" }
+	// ],
+	//
+	// SECRETS — never commit these. Set them via the CLI instead:
+	//   npx wrangler secret put GITHUB_TOKEN
+	// GITHUB_TOKEN is read ONLY inside Route Handlers to authenticate calls to the
+	// GitHub API. It must never be exposed to the browser.
+	//
+	// If you choose Upstash instead of Cloudflare KV for rate limiting, set:
+	//   npx wrangler secret put UPSTASH_REDIS_REST_URL
+	//   npx wrangler secret put UPSTASH_REDIS_REST_TOKEN
 }
