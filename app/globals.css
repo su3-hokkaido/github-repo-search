@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* next-themes uses the `class` strategy (adds `.dark` on <html>). Bind Tailwind's
+   `dark:` variant to that class instead of the default `prefers-color-scheme`. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Project-specific base styles. Tailwind's Preflight already handles the
+   box-sizing and margin reset, so only the extras remain here. */
+@layer base {
+  body {
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+}
