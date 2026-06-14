@@ -1,0 +1,122 @@
+name: Data Patch
+description: Request a data patch or database fix
+title: "[Data Patch] "
+labels: ["data-patch", "database"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **⚠️ Important:** Data patches can have a significant impact on production systems. Please provide detailed information and follow the appropriate review process.
+
+  - type: textarea
+    id: patch-description
+    attributes:
+      label: Patch Description
+      description: Describe the data that needs to be patched or fixed
+      placeholder: What data needs to be changed? Be specific about tables, records, fields, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: patch-type
+    attributes:
+      label: Patch Type
+      description: What kind of data operation is needed?
+      options:
+        - Modify data
+        - Data migration
+        - Cleanup data
+        - Change schemas
+        - Seed data
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Target Environment
+      description: Which environment should this patch be applied to?
+      options:
+        - Production
+        - Test
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-data
+    attributes:
+      label: Affected Data
+      description: Specify exactly which data is affected
+      placeholder: |
+        - Tables: table1, table2
+        - Estimated number of affected records: ~1000
+        - Key identifiers: user_id, order_id, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this data patch needed?
+      placeholder: What problem does this patch solve? What triggered the need for this change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact-analysis
+    attributes:
+      label: Impact Analysis
+      description: Analyze the potential impact of this patch
+      placeholder: |
+        - Affected systems:
+        - Affected users:
+        - Required downtime:
+        - Rollback plan:
+    validations:
+      required: true
+
+  - type: textarea
+    id: sql-statements
+    attributes:
+      label: SQL Statements / Scripts
+      description: Provide the actual SQL or script content (if available)
+      placeholder: |
+        ```sql
+        -- Example SQL statement
+        UPDATE users SET status = 'active' WHERE created_at < '2024-01-01';
+        ```
+
+  - type: checkboxes
+    id: safety-checks
+    attributes:
+      label: Safety Checklist
+      description: Please confirm the following safety measures
+      options:
+        - label: I have tested this patch in a development environment
+        - label: I have identified a rollback strategy
+        - label: I have considered the impact on dependent systems
+        - label: I have prepared a backup procedure
+        - label: I have scheduled an appropriate maintenance window (if needed)
+
+  - type: textarea
+    id: testing-validation
+    attributes:
+      label: Testing & Validation
+      description: How will you confirm the patch was successful?
+      placeholder: What queries or checks will verify that the patch worked correctly?
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this data patch?
+      options:
+        - Low - Can wait until the next maintenance window
+        - Medium - Should be applied within a week
+        - High - Should be applied within 24 hours
+        - Urgent - Emergency patch needed immediately
+    validations:
+      required: true

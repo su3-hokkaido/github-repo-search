@@ -1,0 +1,53 @@
+{
+  "Common": {
+    "appTitle": "GitHub Repository Search",
+    "appDescription": "Search GitHub repositories and view their details.",
+    "loading": "Loading…"
+  },
+  "Search": {
+    "inputLabel": "Search repositories",
+    "placeholder": "Search repositories",
+    "submit": "Search",
+    "validationRequired": "Enter a keyword to search.",
+    "idle": "Search GitHub repositories by keyword.",
+    "loading": "Searching…",
+    "empty": "No repositories match “{query}”. Try a different keyword.",
+    "resultsSummary": "{count, number} repositories found · page {page} of {pageCount}",
+    "errorGeneric": "Something went wrong. Try your search again.",
+    "errorRateLimited": "Too many requests. Wait a moment and search again."
+  },
+  "RepoList": {
+    "starsLabel": "{count, number} stars"
+  },
+  "Pagination": {
+    "label": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {page}"
+  },
+  "RepoDetail": {
+    "back": "Back to search",
+    "loading": "Loading…",
+    "notFound": "We couldn’t find that repository. It may have been renamed or removed.",
+    "errorGeneric": "Something went wrong. Try again.",
+    "errorRateLimited": "Too many requests. Wait a moment and try again.",
+    "stars": "Stars",
+    "watchers": "Watchers",
+    "watchersTitle": "Subscribers watching this repository",
+    "forks": "Forks",
+    "issues": "Issues",
+    "issuesTitle": "Open issues and pull requests",
+    "openOnGitHub": "Open on GitHub"
+  },
+  "Theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "Locale": {
+    "label": "Language",
+    "en": "English",
+    "ja": "日本語"
+  }
+}
