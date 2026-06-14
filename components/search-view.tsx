@@ -26,6 +26,8 @@ export function SearchView() {
 
   useEffect(() => {
     if (!query) {
+      // クエリが空のときは即座に idle 表示へ戻す。
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState({ status: "idle" });
       return;
     }

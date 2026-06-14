@@ -7,7 +7,12 @@ const searchPayload = {
       id: 1,
       name: "react",
       fullName: "facebook/react",
-      owner: { login: "facebook", avatarUrl: "https://avatars.example/fb.png" },
+      // next/image only allows GitHub's avatar host (see next.config.ts), so the
+      // fixture must use it or the image render throws and trips the error boundary.
+      owner: {
+        login: "facebook",
+        avatarUrl: "https://avatars.githubusercontent.com/u/69631?v=4",
+      },
       description: "The library for web and native UIs.",
       language: "JavaScript",
       stars: 230000,

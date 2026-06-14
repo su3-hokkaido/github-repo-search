@@ -31,6 +31,9 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // クライアントでのマウント完了を検知するための定番パターン。ハイドレーション不一致を
+  // 避ける目的で意図的に effect 内で同期的に state を更新する。
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";

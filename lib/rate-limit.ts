@@ -170,7 +170,9 @@ async function getRateLimitStore(): Promise<KVLike> {
 export function withRateLimit<TCtx = unknown>(
   handler: (request: Request, context: TCtx) => Promise<Response>,
   options: RateLimitOptions,
-): (request: Request, context: TCtx) => Promise<Response> {
+): (request: Request, context?: TCtx) => Promise<Response> {
+  // Next.js only passes the context (route params) for dynamic routes, so the
+  // wrapped handler must remain callable with the request alone.
   return async (request, context) => {
     const store = await getRateLimitStore();
     const identifier = getClientIp(request);
@@ -187,7 +189,7 @@ export function withRateLimit<TCtx = unknown>(
       );
     }
 
-    const response = await handler(request, context);
+    const response = await handler(request, context as TCtx);
     for (const [name, value] of Object.entries(headers)) {
       response.headers.set(name, value);
     }

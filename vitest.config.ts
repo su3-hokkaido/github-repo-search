@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "jsdom",
+    // API ルートのテストは DOM を必要とせず、jsdom の Request.signal が Node の
+    // fetch(undici) と互換でないため、当該ファイルだけ node 環境で実行する。
+    environmentMatchGlobs: [["tests/api/**", "node"]],
     globals: true,
     setupFiles: ["./tests/setup.ts"],
     include: ["tests/**/*.test.{ts,tsx}"],
