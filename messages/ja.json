@@ -8,6 +8,7 @@
     "inputLabel": "リポジトリを検索",
     "placeholder": "リポジトリを検索",
     "submit": "検索",
+    "validationRequired": "検索キーワードを入力してください。",
     "idle": "キーワードで GitHub リポジトリを検索します。",
     "loading": "検索中…",
     "empty": "「{query}」に一致するリポジトリはありません。別のキーワードをお試しください。",
