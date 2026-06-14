@@ -7,6 +7,15 @@ The detail view is implemented as a **dedicated page** rather than a modal, and 
 
 ---
 
+## 0. URLs
+
+| Environment | URL | Note
+|---|---|---|
+| Production | https://github-repo-search.su3-hokkaido-2210.workers.dev/search | You should publish the specific version by yourselves after you check the preview app.
+| Develop | https://develop-github-repo-search.su3-hokkaido-2210.workers.dev/search | N/A
+
+You should execute `npx wrangler versions deploy` via your terminal to publish the specific version on the production after the deployment is succeeded on Cloudflare.
+
 ## 1. Meeting the Minimum Requirements
 
 | Requirement | Implementation | Key Files |
@@ -205,6 +214,11 @@ Rather than trusting the AI's output as-is, the following were explicitly verifi
 
 ### 10.3 Reflections
 The AI contributed greatly to implementation speed and thoroughness, but **the latest external specs, security decisions, domain-specific pitfalls, and test-environment-specific defects** were impossible to handle without human verification. The work proceeds with a division of labor where the AI is used to "speed up drafting and iteration," while **fact-checking and design decisions are guaranteed by me**.
+
+## 11. Branches
+
+- `main`: After the deployment is succeeded, you should merge changes from `develop` into `main` branch to manage the latest succeeded commit.
+- `develop`: The target branch to be built & be deployed
 
 ---
 
